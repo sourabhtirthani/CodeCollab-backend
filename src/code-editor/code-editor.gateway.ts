@@ -21,10 +21,15 @@ interface Room {
 }
 
 @WebSocketGateway({
-    cors: {
-        origin: "http://localhost:3000", // Your Next.js URL
-        methods: ["GET", "POST"]
-    }
+  cors: {
+    origin: [
+      'http://localhost:3000',
+      'https://code-collab-frontend-gamma.vercel.app',
+      'https://code-collab-frontend.vercel.app'
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true,
+  }
 })
 export class CodeEditorGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @WebSocketServer() server: Server;
